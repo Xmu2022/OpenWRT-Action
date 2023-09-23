@@ -5,6 +5,8 @@ src-git-full telephony https://git.openwrt.org/feed/telephony.git;openwrt-23.05
 src-git kenzo https://github.com/kenzok8/openwrt-packages
 src-git small https://github.com/kenzok8/small
 src-git NueXini_Packages https://github.com/NueXini/NueXini_Packages.git
+src-git zerotier https://github.com/mwarning/zerotier-openwrt.git
+
 #自动更新
 src-git autoupdate https://github.com/lllrrr2/luci-app-autoupdate
 #测速
