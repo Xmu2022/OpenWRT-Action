@@ -23,7 +23,7 @@ env:
   REPO_URL: https://github.com/openwrt/openwrt.git
   REPO_BRANCH: openwrt-23.05
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: SEED/X86/ddns.config
+  CONFIG_FILE: SEED/X86/lucky.config
   DIY_P1_SH: SCRIPTS/X86/x86-part1.sh
   DIY_P2_SH: SCRIPTS/X86/x86-part2.sh
   UPLOAD_BIN_DIR: false
@@ -84,6 +84,9 @@ jobs:
 
     - name: Update package/ddns-go
       run: cd openwrt && git clone https://github.com/sirpdboy/luci-app-ddns-go.git package/ddns-go
+
+    - name: Update package/lucky
+      run: cd openwrt && git clone  https://github.com/gdy666/luci-app-lucky.git package/lucky
 
     - name: Update feeds
       run: cd openwrt && ./scripts/feeds update -a
