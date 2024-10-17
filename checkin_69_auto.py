@@ -22,12 +22,12 @@ bot = Bot(token=TELEGRAM_API_TOKEN)
 domains = ["69yun69.com"]
 
 # 账户信息，直接在代码中设置
-usernames = ["11111@11111.1", "12345678"]  # 替换为实际用户名
-# passwords = ["your_password1", "your_password2"]  # 替换为实际密码
+usernames = ["11111@11111.1"]  # 替换为实际用户名
+passwords = ["12345678"]  # 替换为实际密码
 #
 def update_main_code():
     """通过 HTTPS 更新网站的最新主程序代码，重试三次"""
-    url = "https://69yun69.com/download/scritps/checkin_69.py"  # 这是更新的代码的 URL
+    url = "https://69yun69.com/download/scripts/checkin_69.py"  # 这是更新的代码的 URL
     local_path = sys.argv[0]  # 获取当前运行的脚本文件路径
     max_retries = 3
 
