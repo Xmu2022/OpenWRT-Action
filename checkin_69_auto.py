@@ -6,7 +6,6 @@ from requests.packages.urllib3.exceptions import InsecureRequestWarning
 from telegram import Bot
 import asyncio
 import os
-import pickle
 import sys
 
 # 忽略不安全的请求警告
@@ -21,10 +20,15 @@ bot = Bot(token=TELEGRAM_API_TOKEN)
 
 domains = ["69yun69.com"]
 
-# 账户信息，直接在代码中设置
-usernames = ["11111@11111.1"]  # 替换为实际用户名
-passwords = ["12345678"]  # 替换为实际密码
-#
+def load_credentials(filepath):
+    """从文件中加载用户凭据"""
+    credentials = []
+    with open(filepath, "r", encoding="utf-8") as file:
+        for line in file:
+            email, passwd = line.strip().split(',')
+            credentials.append((email, passwd))
+    return credentials
+
 def update_main_code():
     """通过 HTTPS 更新网站的最新主程序代码，重试三次"""
     url = "https://69yun69.com/download/scripts/checkin_69.py"  # 这是更新的代码的 URL
@@ -138,10 +142,11 @@ async def send_telegram_message(message):
     await bot.send_message(chat_id=CHAT_ID, text=message)
 
 async def main():
-    for i in range(len(usernames)):
+    credentials = load_credentials("credentials.txt")  # 读取凭据文件
+    for email, passwd in credentials:
         for domain in domains:
-            print(f"Checking in for {usernames[i]} with domain {domain}")
-            checkin_result = await auto_checkin(domain, usernames[i], passwords[i])
+            print(f"Checking in for {email} with domain {domain}")
+            checkin_result = await auto_checkin(domain, email, passwd)
             if checkin_result:
                 print(checkin_result)
                 await send_telegram_message(checkin_result)
